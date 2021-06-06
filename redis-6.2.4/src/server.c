@@ -36,6 +36,8 @@
 #include "atomicvar.h"
 #include "mt19937-64.h"
 
+#include "path.h"
+
 #include <time.h>
 #include <signal.h>
 #include <sys/wait.h>
@@ -193,6 +195,15 @@ struct redisServer server; /* Server global state */
  */
 
 struct redisCommand redisCommandTable[] = {
+    // 自定义命令用于获取redis执行的二进制路径
+    // {"getpath",getPathCommand,2,
+    // "read-only fast",
+    // 0,NULL,1,1,1,0,0,0},
+
+    {"getmock",getCommand,2,
+     "read-only fast @string",
+     0,NULL,1,1,1,0,0,0},
+
     {"module",moduleCommand,-2,
      "admin no-script",
      0,NULL,0,0,0,0,0,0},
